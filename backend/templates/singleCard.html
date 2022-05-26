@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>
+    English Vocabulary Test App | Sample sentence for {{Atext}}
+</title>
+<meta name="description"
+    content="{{Atext | upper}}| Sample sentence for {{Atext}}: {{Qtext}} Test your English vocabulary treasuere using Blanku." />
+<link rel="canonical" href="https://www.blanku.me/cards/{{cardId}}/" />
+{% endblock header %}
+
+{% block content %}
+<div id="singleCardComponent"></div>
+<noscript>
+    <h1> Sample quiz sentence for {{Atext}}</h1>
+    <p>{{Qtext}}</p>
+    <h2>Meaning of {{Atext}}</h2>
+    {% for dic in ndics %}
+    <h3>Definition of {{dic.word}}</h3>
+    {% for meaning in dic.meanings %}
+    <div>
+        <span>Part of Speech: {{meaning.partOfSpeech}}</span>
+        <ul>
+            {% for definition in meaning.definitions %}
+            <li>
+                {{definition.definition}}
+                {% if definition.example %}
+                <br />
+                <strong>Sample sentence for {{dic.word}}</strong>
+                <em>{{definition.example}}</em>
+                {% endif %}
+            </li>
+            {% endfor %}
+            {% if meaning.synonyms %}
+            <strong>Synonyms for {{dic.word}}</strong> <span>{{meaning.synonyms}}</span>
+            {% endif %}
+            {% if meaning.antonyms %}
+            <strong>Antonyms for {{dic.word}}</strong> <span>{{meaning.antonyms}}</span>
+            {% endif %}
+        </ul>
+    </div>
+
+    {% endfor %}
+    {% endfor %}
+</noscript>
+{% endblock content %}
+
+
+{% block scriptha %}
+<script>
+    let dataJson = "{{ data | escapejs }}";
+    let dicsJson = "{{ dics | escapejs }}";
+    let username = "{{ user.username }}";
+</script>
+<script type="module" src="{% static 'react/AnswerBox.js' %}"></script>
+<script type="module" src="{% static 'react/TranslationBox.js' %}"></script>
+<script type="module" src="{% static 'react/Morph.js' %}"></script>
+<script type="module" src="{% static 'react/CardPreviewJS.js' %}"></script>
+{% endblock scriptha %}

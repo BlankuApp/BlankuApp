@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="shortcut icon" type="image/png" href="{% static 'favicon.ico' %}" />
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+    <script src="https://unpkg.com/react@17/umd/react.production.min.js" crossorigin></script>
+    <script src="https://unpkg.com/react-dom@17/umd/react-dom.production.min.js" crossorigin></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+    <meta name="google-site-verification" content="kbGG3BUXZbbjXebdl9yXqpaKX3itbKyqwhq9hQcQC6Q" />
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-689NPV619D"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-689NPV619D');
+    </script>
+    <link href="{% static 'react/styles.css' %}" rel="stylesheet">
+    {% block header %} {% endblock header %}
+</head>
+
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col col-sm-3 d-none d-sm-block px-2">
+                <div class="sticky-top">
+                    <div class="d-flex flex-row flex-sm-column vh-100">
+                        <a href="/" class="text-center fs-1 fw-bold text-decoration-none text-body">
+                            <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                width="36px" height="36px" viewBox="0 0 36 36" aria-hidden="true" role="img"
+                                class="iconify iconify--twemoji" preserveAspectRatio="xMidYMid meet">
+                                <path fill="#BE1931"
+                                    d="M2.638 23.821l-1.625-3.1l1.55-.812c2.393-1.255 4.982-2.778 5.413-4.982c.335-1.714-.611-3.903-2.812-6.506l-1.13-1.336l2.672-2.26l1.13 1.336c2.961 3.502 4.131 6.589 3.574 9.437c-.788 4.037-4.975 6.231-7.223 7.41l-1.549.813zM20.93 34.947l-.812-1.55c-1.255-2.394-2.778-4.982-4.982-5.413c-1.713-.336-3.903.611-6.506 2.812l-1.336 1.13l-2.26-2.672l1.336-1.13c3.501-2.962 6.585-4.134 9.437-3.574c4.037.788 6.231 4.974 7.41 7.223l.812 1.55l-3.099 1.624zm8.531-4.022l-1.13-1.336C25.369 26.087 24.2 23 24.757 20.151c.788-4.036 4.974-6.23 7.223-7.409l1.55-.812l1.625 3.1l-1.55.812c-2.394 1.255-4.982 2.778-5.413 4.981c-.335 1.715.611 3.903 2.811 6.506l1.13 1.336l-2.672 2.26zm-7.708-19.588c-.471 0-.934-.045-1.392-.134c-4.037-.788-6.231-4.975-7.41-7.223l-.812-1.55l3.1-1.625l.813 1.55c1.255 2.393 2.778 4.982 4.981 5.413c1.711.334 3.902-.61 6.506-2.812l1.336-1.13l2.26 2.672l-1.336 1.13c-2.941 2.486-5.588 3.709-8.046 3.709z" />
+                            </svg>
+                            Blanku_
+                        </a>
+                        <h1 class="text-center fs-6 lead">English Vocabulary Test App</h1>
+                        <hr class="m-0" />
+                        <a href="/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-book pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Word Test</div>
+                        </a>
+                        <a href="/About/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-speedometer pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Sentence Test</div>
+                        </a>
+                        <hr class="m-0" />
+                        {% if user.is_authenticated %}
+                        <a href="/MyCards/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-journal-text pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">My Cards</div>
+                        </a>
+                        <a href="/RecentlyRead/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-clock-history pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Recently Read</div>
+                        </a>
+                        <a href="/SavedCards/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-bookmarks pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Saved</div>
+                        </a>
+
+                        <a href="/create/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-file-plus pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Add Card</div>
+                        </a>
+                        {% else %}
+                        <a href="/login/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-journal-text pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">My Cards</div>
+                        </a>
+                        <a href="/login/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-clock-history pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Recently Read</div>
+                        </a>
+                        <a href="/login/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-bookmarks pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Saved</div>
+                        </a>
+
+                        <a href="/login/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-file-plus pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Add Card</div>
+                        </a>
+                        {% endif %}
+                        <hr class="m-0" />
+                        {% if user.is_authenticated %}
+                        <div class="fs-5 ps-2 mt-auto">Hello {{user.username}}</div>
+                        <hr class="m-0" />
+                        <a href="/logout/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-person-x pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Sign out</div>
+                        </a>
+                        {% else%}
+                        <button type="button" class="btn btn-primary" onclick="var selectLang = new bootstrap.Modal(
+                            document.getElementById('selectLang')
+                          );
+                          selectLang.show();">Change
+                            Language</button>
+                        <a href="/login/" class="btn-social fs-5 text-decoration-none mt-auto ps-2">
+                            <i class="bi-person-check pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Sign In</div>
+                        </a>
+                        <a href="/Register/" class="btn-social fs-5 text-decoration-none my-1 ps-2">
+                            <i class="bi-person-plus pe-2 fs-3"></i>
+                            <div class="d-none d-sm-block">Register</div>
+                        </a>
+
+                        {% endif %}
+                        <hr class="m-0" />
+                        <div class="d-flex flex-row flex-wrap justify-content-around my-1">
+                            <small>
+                                <a href="/About/" class="text-muted">
+                                    About
+                                </a>
+                            </small>
+                            <small>
+                                <a href="/ContactUs/" class="text-muted">
+                                    Contact
+                                </a>
+                            </small>
+                            <small>
+                                <a href="/Privacy/" class="text-muted">
+                                    Privacy
+                                </a>
+                            </small>
+                            <small>
+                                <a href="/Cookies/" class="text-muted">
+                                    Cookies
+                                </a>
+                            </small>
+                            <small>
+                                <a href="/ToC/" class="text-muted">
+                                    ToC
+                                </a>
+                            </small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="modal" id="selectLang" tabIndex="-1">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <div>Are you new to Blanku?</div>
+                            <p>Then select your first language and start learning with us</p>
+                            <div class="d-flex flex-wrap">
+                                <a href="/api/setLang/?Lang=cn" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="32"
+                                        height="32">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#d80027" d="M0 0h512v512H0z" />
+                                            <path fill="#ffda44"
+                                                d="m140.1 155.8 22.1 68h71.5l-57.8 42.1 22.1 68-57.9-42-57.9 42 22.2-68-57.9-42.1H118zm163.4 240.7-16.9-20.8-25 9.7 14.5-22.5-16.9-20.9 25.9 6.9 14.6-22.5 1.4 26.8 26 6.9-25.1 9.6zm33.6-61 8-25.6-21.9-15.5 26.8-.4 7.9-25.6 8.7 25.4 26.8-.3-21.5 16 8.6 25.4-21.9-15.5zm45.3-147.6L370.6 212l19.2 18.7-26.5-3.8-11.8 24-4.6-26.4-26.6-3.8 23.8-12.5-4.6-26.5 19.2 18.7zm-78.2-73-2 26.7 24.9 10.1-26.1 6.4-1.9 26.8-14.1-22.8-26.1 6.4 17.3-20.5-14.2-22.7 24.9 10.1z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">汉语</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=es" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <mask id="b">
+                                            <path fill="#fff"
+                                                d="M160 272v24a24 24 0 0 0 24 24 24 24 0 0 0 24-24v-24h-24z" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#d80027" d="M0 0h512v512H0z" />
+                                            <path fill="#ffda44" d="M0 128h512v256H0z" />
+                                            <g fill="#eee">
+                                                <path d="M144 304h-16v-80h16zm128 0h16v-80h-16z" />
+                                                <ellipse cx="208" cy="296" rx="48" ry="32" />
+                                            </g>
+                                            <g fill="#d80027">
+                                                <rect width="16" height="24" x="128" y="192" rx="8" />
+                                                <rect width="16" height="24" x="272" y="192" rx="8" />
+                                                <path d="M208 272v24a24 24 0 0 0 24 24 24 24 0 0 0 24-24v-24h-24z" />
+                                            </g>
+                                            <g fill="#ff9811">
+                                                <rect width="32" height="16" x="120" y="208" ry="8" />
+                                                <rect width="32" height="16" x="264" y="208" ry="8" />
+                                                <rect width="32" height="16" x="120" y="304" rx="8" />
+                                                <rect width="32" height="16" x="264" y="304" rx="8" />
+                                                <path d="M160 272v24a24 24 0 0 0 24 24 24 24 0 0 0 24-24v-24h-24z" />
+                                            </g>
+                                            <path d="M122 252h172m-172 24h28m116 0h28" />
+                                            <path fill="#d80027"
+                                                d="M122 248a4 4 0 0 0-4 4 4 4 0 0 0 4 4h172a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm0 24a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4zm144 0a4 4 0 0 0-4 4 4 4 0 0 0 4 4h28a4 4 0 0 0 4-4 4 4 0 0 0-4-4z" />
+                                            <path fill="#eee"
+                                                d="M196 168c-7 0-13 5-15 11l-5-1c-9 0-16 7-16 16s7 16 16 16c7 0 13-4 15-11a16 16 0 0 0 17-4 16 16 0 0 0 17 4 16 16 0 1 0 10-20 16 16 0 0 0-27-5c-3-4-7-6-12-6zm0 8c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm24 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-8 0-4 4-8 8-8zm-44 10 4 1 4 8c0 4-4 7-8 7s-8-3-8-8c0-4 4-8 8-8zm64 0c5 0 8 4 8 8 0 5-3 8-8 8-4 0-8-3-8-7l4-8 4-1z" />
+                                            <path fill="none" d="M220 284v12c0 7 5 12 12 12s12-5 12-12v-12z" />
+                                            <path fill="#ff9811" d="M200 160h16v32h-16z" />
+                                            <path fill="#eee" d="M208 224h48v48h-48z" />
+                                            <g fill="#d80027">
+                                                <path
+                                                    d="m248 208-8 8h-64l-8-8c0-13 18-24 40-24s40 11 40 24zm-88 16h48v48h-48z" />
+                                                <rect width="20" height="32" x="222" y="232" rx="10" ry="10" />
+                                                <g mask="url(#b)">
+                                                    <path d="M170 272h10v48h-10zm19 0h10v48h-10z" />
+                                                </g>
+                                            </g>
+                                            <path fill="#ff9811"
+                                                d="M168 232v8h8v16h-8v8h32v-8h-8v-16h8v-8zm8-16h64v8h-64z" />
+                                            <g fill="#ffda44">
+                                                <circle cx="186" cy="202" r="6" />
+                                                <circle cx="208" cy="202" r="6" />
+                                                <circle cx="230" cy="202" r="6" />
+                                            </g>
+                                            <g fill="#338af3">
+                                                <circle cx="208" cy="272" r="16" />
+                                                <rect width="32" height="16" x="264" y="320" ry="8" />
+                                                <rect width="32" height="16" x="120" y="320" ry="8" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Spanish</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=hi" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee"
+                                                d="m0 144.7 255.3-36.5L512 144.7v222.6L250.5 407 0 367.3z" />
+                                            <path fill="#ff9811" d="M0 0h512v144.7H0z" />
+                                            <path fill="#6da544" d="M0 367.3h512V512H0z" />
+                                            <circle cx="256" cy="256" r="89" fill="#0052b4" />
+                                            <circle cx="256" cy="256" r="55.7" fill="#eee" />
+                                            <path fill="#0052b4"
+                                                d="m256 187.3 17.2 39 42.3-4.6-25.2 34.3 25.2 34.3-42.3-4.6-17.2 39-17.2-39-42.3 4.6 25.2-34.3-25.2-34.3 42.3 4.6z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">हिंदी</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=jp" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee" d="M0 0h512v512H0z" />
+                                            <circle cx="256" cy="256" r="111.3" fill="#d80027" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">日本語</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=bn" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#496e2d" d="M0 0h512v512H0z" />
+                                            <circle cx="200.3" cy="256" r="111.3" fill="#d80027" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">বাংলা</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=ru" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#0052b4" d="m0 167 253.8-19.3L512 167v178l-254.9 32.3L0 345z" />
+                                            <path fill="#eee" d="M0 0h512v167H0z" />
+                                            <path fill="#d80027" d="M0 345h512v167H0z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">русский язык</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=fa" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee"
+                                                d="M0 144.7 258.8 39.6 512 144.7v222.6L257 493 0 367.3z" />
+                                            <path fill="#6da544"
+                                                d="M0 0v144.7h105.6v-22.2h33.6v22.2h33.3v-22.2h33.6v22.2h33.3v-22.2H273v22.2h33v-22.2h33.6v22.2h33.2v-22.2h33.6v22.2H512V0z" />
+                                            <path fill="#d80027"
+                                                d="M0 367.3V512h512V367.3H406.4v22.4h-33.6v-22.4h-33.2v22.4H306v-22.4h-33v22.4h-33.6v-22.4h-33.3v22.4h-33.6v-22.4h-33.3v22.4h-33.6v-22.4zm339.1-178h-33.4c.2 3.7.4 7.4.4 11.1 0 24.8-6.2 48.8-17 66-3.3 5.2-9 12.6-16.4 17.6v-94.7h-33.4v94.8c-7.5-5-13-12.4-16.4-17.7-10.8-17-17-41-17-65.9 0-3.7.2-7.4.4-11H173a190 190 0 0 0-.4 11c0 68.7 36.7 122.5 83.5 122.5s83.5-53.8 83.5-122.5c0-3.7-.1-7.4-.4-11z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">فارسی</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=ar" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#496e2d" d="M0 0h512v512H0z" />
+                                            <g fill="#eee">
+                                                <path
+                                                    d="M144.7 306c0 18.5 15 33.5 33.4 33.5h100.2a27.8 27.8 0 0 0 27.8 27.8h33.4a27.8 27.8 0 0 0 27.8-27.8V306zm225.4-161.3v78c0 12.2-10 22.2-22.3 22.2v33.4c30.7 0 55.7-25 55.7-55.7v-77.9H370zm-239.3 78c0 12.2-10 22.2-22.3 22.2v33.4c30.7 0 55.7-25 55.7-55.7v-77.9h-33.4z" />
+                                                <path
+                                                    d="M320 144.7h33.4v78H320zm-50 44.5a5.6 5.6 0 0 1-11.2 0v-44.5h-33.4v44.5a5.6 5.6 0 0 1-11.1 0v-44.5h-33.4v44.5a39 39 0 0 0 39 39 38.7 38.7 0 0 0 22.2-7 38.7 38.7 0 0 0 22.2 7c1.7 0 3.4-.1 5-.3a22.3 22.3 0 0 1-21.6 17v33.4c30.6 0 55.6-25 55.6-55.7v-77.9H270z" />
+                                                <path d="M180.9 244.9h50v33.4h-50z" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">اَلْعَرَبِيَّةُ</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=de" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#ffda44" d="m0 345 256.7-25.5L512 345v167H0z" />
+                                            <path fill="#d80027" d="m0 167 255-23 257 23v178H0z" />
+                                            <path fill="#333" d="M0 0h512v167H0z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Deutsch</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=fr" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee" d="M167 0h178l25.9 252.3L345 512H167l-29.8-253.4z" />
+                                            <path fill="#0052b4" d="M0 0h167v512H0z" />
+                                            <path fill="#d80027" d="M345 0h167v512H345z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Français</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=id" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee" d="m0 256 249.6-41.3L512 256v256H0z" />
+                                            <path fill="#a2001d" d="M0 0h512v256H0z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Bahasa Indonesia</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=ko" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee" d="M0 0h512v512H0z" />
+                                            <path fill="#d80027"
+                                                d="M345 256c0 22.3-39.8 78-89 78s-89-55.7-89-78a89 89 0 1 1 178 0z" />
+                                            <path fill="#0052b4" d="M345 256a89 89 0 1 1-178 0" />
+                                            <path fill="#333"
+                                                d="m350.4 334.7 23.7-23.6 15.7 15.7-23.6 23.6zm-39.3 39.4 23.6-23.7 15.7 15.8-23.6 23.6zm86.6 7.8 23.6-23.6L437 374l-23.6 23.7zm-39.4 39.4 23.6-23.6 15.8 15.7L374 437zm15.8-63 23.6-23.6 15.7 15.7-23.6 23.7zm-39.4 39.4 23.6-23.6 15.8 15.7-23.7 23.6zm63-220.4-63-63 15.8-15.7 63 63zm-63-15.7-23.6-23.7 15.7-15.7 23.7 23.6zm39.4 39.3-23.7-23.6 15.8-15.7 23.6 23.6zm7.8-86.6-23.6-23.6L374 75l23.7 23.6zm39.4 39.4L397.7 130l15.7-15.8L437 138zM90.7 358.3l63 63-15.8 15.7-63-63zm63 15.7 23.6 23.7-15.7 15.7-23.7-23.6zm-39.4-39.3 23.6 23.6-15.7 15.8-23.6-23.7zm23.6-23.6 63 63-15.7 15.7-63-63zm15.8-220.4-63 63L75 137.9l63-63zm23.6 23.6-63 63-15.7-15.8 63-63zm23.6 23.6-63 63-15.7-15.7 63-63z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">한국어</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=nl" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#eee" d="m0 167 253.8-19.3L512 167v178l-254.9 32.3L0 345z" />
+                                            <path fill="#a2001d" d="M0 0h512v167H0z" />
+                                            <path fill="#0052b4" d="M0 345h512v167H0z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Nederlands</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=pt" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#6da544" d="M0 512h167l37.9-260.3L167 0H0z" />
+                                            <path fill="#d80027" d="M512 0H167v512h345z" />
+                                            <circle cx="167" cy="256" r="89" fill="#ffda44" />
+                                            <path fill="#d80027" d="M116.9 211.5V267a50 50 0 1 0 100.1 0v-55.6H117z" />
+                                            <path fill="#eee"
+                                                d="M167 283.8c-9.2 0-16.7-7.5-16.7-16.7V245h33.4v22c0 9.2-7.5 16.7-16.7 16.7z" />
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Português</span>
+                                </a>
+                                <a href="/api/setLang/?Lang=tr" class="btn btn-outline-primary m-1 py-1">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32"
+                                        viewBox="0 0 512 512">
+                                        <mask id="a">
+                                            <circle cx="256" cy="256" r="256" fill="#fff" />
+                                        </mask>
+                                        <g mask="url(#a)">
+                                            <path fill="#d80027" d="M0 0h512v512H0z" />
+                                            <g fill="#eee">
+                                                <path
+                                                    d="m245.5 209.2 21 29 34-11.1-21 29 21 28.9-34-11.1-21 29V267l-34-11.1 34-11z" />
+                                                <path
+                                                    d="M188.2 328.3a72.3 72.3 0 1 1 34.4-136 89 89 0 1 0 0 127.3 72 72 0 0 1-34.4 8.7z" />
+                                            </g>
+                                        </g>
+                                    </svg>
+                                    <span class="align-middle ms-1">Türk dili</span>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col col-sm-9 p-0 px-sm-4">
+                <div>
+                    <input type="text" class="form-control border-0" aria-label=" Username"
+                        aria-describedby="basic-addon1" id="dummy" style="height: 1px"></input>
+                </div>
+                {% block content %}{% endblock content %}
+            </div>
+        </div>
+    </div>
+
+
+
+    <script>
+        const { useState, useEffect } = React;
+        const csrftoken = getCookie("csrftoken");
+        const Lang = getCookie("Lang");
+        function getCookie(name) {
+            let cookieValue = null;
+            if (document.cookie && document.cookie !== "") {
+                const cookies = document.cookie.split(";");
+                for (let i = 0; i < cookies.length; i++) {
+                    const cookie = cookies[i].trim();
+                    // Does this cookie string begin with the name we want?
+                    if (cookie.substring(0, name.length + 1) === name + "=") {
+                        cookieValue = decodeURIComponent(cookie.substring(name.length + 1));
+                        break;
+                    }
+                }
+            }
+            return cookieValue;
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
+    {% block scriptha %}{% endblock scriptha %}
+</body>
+
+</html>

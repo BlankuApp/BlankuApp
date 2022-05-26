@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>Contact us | Blanku | English Vocabulary Test App</title>
+<meta name="description"
+        content="Memorize English vocabulary by filling-up random blanks in random sentences. Translations are provided in 15 widely spoken languages worldwide." />
+<link rel="canonical" href="https://www.blanku.me/ContactUs/" />
+{% endblock header %}
+
+{% block content %}
+<div>
+        <div class="text-center fs-2 my-3">Contact Form</div>
+        <form>
+                <div class="d-flex flex-row">
+                        <div class="input-group my-3 pe-1"><span class="input-group-text"
+                                        id="basic-addon1">Name</span><input type="text" class="form-control" name="name"
+                                        aria-label="name" aria-describedby="basic-addon1">
+                        </div>
+                        <div class="input-group my-3 ps-1"><span class="input-group-text"
+                                        id="basic-addon2">Email</span><input type="email" class="form-control"
+                                        name="email" aria-label="email" aria-describedby="basic-addon2">
+                        </div>
+                </div>
+                <div class="mb-3"><label for="exampleFormControlTextarea1" class="form-label">Message</label><textarea
+                                class="form-control" id="exampleFormControlTextarea1" name="message"
+                                rows="5"></textarea></div>
+                <div class="ps-3 text-danger"></div>
+                <div class="ps-3 text-danger"></div>
+                <div class="ps-3 text-danger"></div>
+                <div class="ps-3 text-danger"></div>
+                <div class="d-flex flex-row justify-content-end"><input type="submit" class="btn btn-primary disabled"
+                                value="Submit">
+                </div>
+        </form>
+</div>
+{% endblock content %}

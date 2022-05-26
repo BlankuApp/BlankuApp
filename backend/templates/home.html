@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>Blanku | English Vocabulary Test App</title>
+<meta name="description"
+    content="Memorize English vocabulary by filling-up random blanks in random sentences. Translations are provided in 15 widely spoken languages worldwide." />
+<link rel="canonical" href="https://www.blanku.me/" />
+{% endblock header %}
+
+{% block content %}
+<div id="reviewerComponent"></div>
+{% endblock content %}
+
+
+{% block scriptha %}
+<script>
+    let dataJson = "{{ data | escapejs }}";
+    let username = "{{ user.username }}";
+    let userlang = "{{ user.language }}";
+    let hasNext = "{{ hasNext }}";
+    let root = "{{ root }}";
+    let order = "{{ order }}";
+    let read = "{{ read }}";
+    let page = "{{ page }}";
+</script>
+<script type="module" src="{% static 'react/AnswerBox.js' %}"></script>
+<script type="module" src="{% static 'react/TranslationBox.js' %}"></script>
+<script type="module" src="{% static 'react/Morph.js' %}"></script>
+<script type="module" src="{% static 'react/ReviewerJS.js' %}"></script>
+{% endblock scriptha %}

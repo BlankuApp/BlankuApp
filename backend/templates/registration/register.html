@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+{% load widget_tweaks %}
+{% load static %}
+{% block header %}
+<title>Registration Form | Blanku | English Vocabulary Test App</title>
+<meta name="description"
+    content="Memorize English vocabulary by filling-up random blanks in random sentences. Translations are provided in 15 widely spoken languages worldwide." />
+{% endblock header %}
+
+{% block content %}
+<div class="form-signin pt-5">
+    <form method="post" action="/login/">
+        {% csrf_token %}
+        <h1 class="h3 mb-3 fw-normal">Registration Form</h1>
+        <div class="form-floating">
+            {{ form.username|add_class:'form-control'|attr:"placeholder:Username" }}
+            <label htmlFor="floatingInput">Username</label>
+        </div>
+        <div class="form-floating">
+            <input type="email" class="form-control" placeholder="name@example.com" />
+            <label htmlFor="floatingInput">Email address</label>
+        </div>
+
+        <select class="form-select" aria-label=".form-select-lg example">
+            <option defaultValue>First Language</option>
+            <option value="es">Spanish</option>
+            <option value="cn">Chinese</option>
+            <option value="hi">Hindi</option>
+            <option value="jp">Japanese</option>
+            <option value="bn">Bangali</option>
+            <option value="ru">Russian</option>
+            <option value="fa">Persian</option>
+            <option value="ar">Arabic</option>
+            <option value="de">German</option>
+            <option value="fr">French</option>
+            <option value="id">Indonesian</option>
+            <option value="ko">Korean</option>
+            <option value="nl">Dutch</option>
+            <option value="pt">Portuguese</option>
+            <option value="tr">Turkish</option>
+        </select>
+        <div class="form-floating">
+            <input type="password" class="form-control" placeholder="Password" />
+            <label htmlFor="floatingPassword">Password</label>
+        </div>
+
+        <p class="px-2">
+            <small>
+                <span>By clicking Sign Up, you agree to our </span>
+                <a href="/ToC" class="text-muted">
+                    Terms of Services
+                </a>
+                <span> and that you have read our </span>
+                <a href="/Privacy" class="text-muted">
+                    Privacy Policy
+                </a>
+                <span>, including our </span>
+                <a href="/Cookies" class="text-muted">
+                    Cookie Use
+                </a>
+                .
+            </small>
+        </p>
+        <button class="w-100 btn btn-dark fs-5" type="submit">
+            Sign up
+        </button>
+    </form>
+</div>
+
+{% endblock content %}

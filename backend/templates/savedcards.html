@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>Saved Cards | Blanku | English Vocabulary Test App</title>
+<meta name="description"
+    content="Memorize English vocabulary by filling-up random blanks in random sentences. Translations are provided in 15 widely spoken languages worldwide." />
+<link rel="canonical" href="https://www.blanku.me/SavedCards/" />
+{% endblock header %}
+
+{% block content %}
+<div id="savedcardsComponent"></div>
+{% endblock content %}
+
+
+{% block scriptha %}
+<script>
+    let dataJson = "{{ data | escapejs }}";
+    let user = "{{ user }}";
+    let userlang = "{{ user.language }}";
+    let order = "{{order}}";
+    let page = "{{page}}";
+    let hasNext = "{{hasNext}}";
+</script>
+<script type="module" src="{% static 'react/SavedCardsJS.js' %}"></script>
+{% endblock scriptha %}

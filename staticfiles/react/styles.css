@@ -1,0 +1,85 @@
+@import url("https://fonts.googleapis.com/css2?family=Baloo+Bhaijaan+2:wght@400;500&family=Poppins:wght@300;400;700&display=swap");
+
+body {
+  font-family: "Poppins", "Baloo Bhaijaan 2", cursive;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.btn-social {
+  display: inline-flex !important;
+  align-items: center;
+  color: var(--bs-dark);
+  border-radius: 5px !important;
+  transition: 0.5s;
+  margin-left: 5px;
+  margin-right: 5px;
+}
+.btn-social:hover {
+  color: var(--bs-white);
+  background-color: var(--bs-dark);
+  color: white;
+}
+
+.form-signin {
+  width: 100%;
+  max-width: 400px;
+  padding: 15px;
+  margin: auto;
+}
+
+.form-signin .form-floating:focus-within {
+  z-index: 2;
+}
+
+.form-signin input[type="email"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin input[type="text"] {
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+.form-signin input[type="password"] {
+  margin-bottom: 10px;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.form-signin select {
+  height: 3.5rem;
+  margin-bottom: -1px;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  border-top-left-radius: 0;
+  border-top-right-radius: 0;
+}
+
+.box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 4rem;
+  width: 3rem;
+  background-color: black;
+  color: white;
+  border-radius: 15%;
+  margin-left: 0.5rem;
+  margin-top: 0.5rem;
+  font-size: 3rem;
+}
+
+.flag-sm {
+  width: 2rem;
+  border-radius: 10%;
+}
