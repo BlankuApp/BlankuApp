@@ -1,4 +1,4 @@
-import django_heroku
+# import django_heroku
 """
 Django settings for mysite project.
 
@@ -40,7 +40,8 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = env('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = env('DEBUG')
+# DEBUG = env('DEBUG')
+DEBUG = False
 # DEBUG_PROPAGATE_EXCEPTIONS = True
 
 if DEBUG:
@@ -65,7 +66,9 @@ CSRF_TRUSTED_ORIGINS = ['http://localhost:3000',
                         'https://blanku.me',
                         'https://www.blanku.me']
 
-ALLOWED_HOSTS = ['http://blanku.me',
+ALLOWED_HOSTS = ['blanku.me',
+                 'www.blanku.me',
+                 'http://blanku.me',
                  'http://www.blanku.me',
                  'https://blanku.me',
                  'https://www.blanku.me']
@@ -133,6 +136,7 @@ DATABASES = {
 }
 
 
+
 # Password validation
 # https://docs.djangoproject.com/en/4.0/ref/settings/#auth-password-validators
 
@@ -175,8 +179,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     BASE_DIR / 'static'
 ]
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = '/var/www/blanku.me/static/'
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/4.0/ref/settings/#default-auto-field
@@ -184,4 +188,4 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 # Configure Django App for Heroku.
-django_heroku.settings(locals())
+# django_heroku.settings(locals())
