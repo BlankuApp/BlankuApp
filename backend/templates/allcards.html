@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% load static %}
+{% block header %}
+<title>All Cards | Blanku | English Vocabulary Test App</title>
+<meta name="description"
+    content="Memorize English vocabulary by filling-up random blanks in random sentences. Translations are provided in 15 widely spoken languages worldwide." />
+<link rel="canonical" href="https://www.blanku.me/AllCards/" />
+{% endblock header %}
+
+{% block content %}
+<div class="list-group pb-3">
+    {% for item in data %}
+        <a href="/cards/{{item.id}}/" class="list-group-item list-group-item-action">{{ item.id }} - {{ item.Qtext }}</a>
+    {% endfor %}
+</div>
+
+<nav aria-label="Page navigation example">
+    <ul class="pagination justify-content-center">
+        {% if data.has_previous %}
+        <li class="page-item"><a class="page-link" href="?page=1">&laquo; First</a></li>
+        <li class="page-item"><a class="page-link" href="?page={{ data.previous_page_number }}">Previous</a></li>
+        {% endif %}
+        <li class="page-item"><a class="page-link" href="">Page {{ data.number }} of {{ data.paginator.num_pages }}</a></li>
+        {% if data.has_next %}
+            <li class="page-item"><a class="page-link" href="?page={{ data.next_page_number }}">Next</a></li>
+            <li class="page-item"><a class="page-link" href="?page={{ data.paginator.num_pages }}">Last  &raquo;</a></li>
+        {% endif %}
+    </ul>
+</nav>
+
+{% endblock content %}

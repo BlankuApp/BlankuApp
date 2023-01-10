@@ -106,7 +106,7 @@ venv/
 ENV/ 
 env.bak/ 
 venv.bak/ 
-
+.env.bat
 # mkdocs documentation 
 /site 
 
@@ -144,3 +144,6 @@ static/react/package.json
 static/react/package-lock.json
 node_modules/*
 mysite/settingsDev.py
+mysite/settingsProd.py
+staticfiles/
+

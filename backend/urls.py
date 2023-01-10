@@ -1,5 +1,8 @@
 from django.urls import path, include
 from .views import *
+from django.conf import settings
+from django.conf.urls.static import static
+
 
 urlpatterns = [
     path('api/translate/', translateView),
@@ -28,5 +31,6 @@ urlpatterns = [
     path('ContactUs/', ContactUsView),
     path('', include("django.contrib.auth.urls"),),
     path('Register/', RegisterView0),
-    path('sitemap.xml/', SitemapView)
-]
+    path('sitemap.xml/', SitemapView),
+    path('AllCards/',AllCards)
+] + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

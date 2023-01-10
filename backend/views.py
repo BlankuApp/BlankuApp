@@ -920,6 +920,26 @@ def SitemapView(request):
 
     return HttpResponse(output, content_type='text/plain')
 
+@api_view(['GET'])
+def AllCards(request):
+    user = Account.objects.filter(username="hamedo").first()
+    query = SenCard.objects.all().order_by('-id')
+    p = Paginator(query, 50)
+
+    page = request.GET.get("page")
+    if page == None:
+        page = 1
+
+    if int(page) in p.page_range:
+        pageSet = p.get_page(page)
+    else:
+        pageSet = p.get_page(p.num_pages)
+
+    seri = SenCardSerializeer(pageSet, user=user, many=True)
+    seriJson = json.dumps(seri.data)
+
+    return render(request, "allcards.html", context={"data": pageSet, "hasPrev": pageSet.has_previous(), "hasNext": pageSet.has_next(), "page": page})
+
 def SetGuest(request):
     Lang = request.GET.get('Lang')
     request.session['Lang'] = Lang
